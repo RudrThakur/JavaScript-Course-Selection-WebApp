@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Choose Elective</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+
+<!-- Firebase CDN-->
+<script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
+
+
+  <!-- CSS-->
+  <link rel="stylesheet" href="elective.css">
+  <link rel="stylesheet" href="style.css">
+
+  <!-- JavaScript-->
+
+<script src="elective.js"></script>
+<script>
+  
+  //if user tries to access main page without login 
+$(document).ready(function(){
+
+  if(!localStorage.getItem("name")){
+  //show error message
+  alert("You have to login first !");
+  //redirect to login page
+  window.location.href ='index.html';
+  //prevent reload and redirect to action page
+  return false;
+}
+
+
+
+});
+
+</script>
+
+</head>
+<body>
+  <header>
+   <h1> <img src="KCG-updated-logo.png" ALT="KCG Logo" WIDTH=300 HEIGHT=100>
+                         Open Elective Student Registration (2019-2020)</h1>
+  </header>
+<div class="container">
+
+    <div class="elective-box">
+
+
+
+            <h2>Please fill in the following details:</h2>
+            <form id="electiveform">
+              <div class="form-group">
+                <label for="studentname">Name:</label>
+                <input type="text" class="form-control" id="studentname" placeholder="Enter Your Name" name="studentname" required>
+              </div>
+              <div class="form-group">
+                <label for="registernumber">Register Number:</label>
+                <input type="text" class="form-control" id="registernumber" placeholder="Enter Your Register Number" name="registernumber" required>
+              </div>
+              <div class="form-group">
+                      <label for="email">Email:</label>
+                      <input type="email" class="form-control" id="email" placeholder="Enter Your Email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="contact">Contact Number:</label>
+                      <input type="text" class="form-control" id="contact" placeholder="Enter Your Contact Number" name="contact" required>
+                    </div>
+                    <input type="hidden" id="electivesubject" name="electivesubject">
+                    <div class="form-group">
+                          <label for="department">Select Department:</label>
+                          <select class="form-control" id="department" name="department">
+                            <option selected disabled hidden>Choose Department..</option>
+                            <option>CSE</option>
+                            <option>IT</option>
+                            <option>ECE</option>
+                            <option>EIE</option>
+                            <option>AERO</option>
+                            <option>CIVIL</option>
+                            <option>EEE</option>
+                            <option>MECH</option>
+                          </select>
+                          <br>
+                          <p style="color:red">You can only select ONE Subject</p>
+          
+                      </div>
+
+                      <!-- CHOOSE ELECTIVE-->
+                  
+                      <div class="default-elective" id="default-elective">
+                          <div class="form-group">
+                                  <label for="default-elective">Choose Your Elective:</label>
+                                  <select class="form-control" id="default-elective">
+                                    <option>Choose Your Subject..</option>
+                                    
+                                   
+                                  </select>
+                  
+                              </div>
+                              
+                    </div>
+          
+                      <!-- CSE DEPARTMENT -->
+
+                      <div class="cse" id="cse" style="display:none;">
+                            <div class="form-group">
+                                    <label for="cseelective">Choose Your Elective:</label>
+                                    <select class="form-control" id="cseelective">
+                                        <option selected disabled hidden>Choose Your Subject..</option>
+                                      <option>Sensors and Transducers(OAN551)</option>
+                                      <option>Basics of Bioinformatics(OBT552)</option>
+                                      <option>Geographic Information System(OCE552)</option>
+                                     
+                                    </select>
+                    
+                                </div>
+
+                      </div>
+
+                    <!-- IT DEPARTMENT -->
+                      <div class="it" id="it" style="display:none;">
+                          <div class="form-group">
+                                  <label for="itelective">Choose Your Elective:</label>
+                                  <select class="form-control" id="itelective">
+                                      <option selected disabled hidden>Choose Your Subject..</option>
+                                    <option>Sensors and Transducers(OAN551)</option>
+                                    <option>Basics of Bioinformatics(OBT552)</option>
+                                    <option>Geographic Information System(OCE552)</option>
+                                   
+                                  </select>
+                  
+                              </div>
+
+                    </div>
+
+                           <!-- ECE DEPARTMENT -->
+
+                           <div class="ece" style="display:none;" id="ece">
+                                <div class="form-group">
+                                        <label for="eceelective">Choose Your Elective:</label>
+                                        <select class="form-control" id="eceelective">
+                                            <option selected disabled hidden>Choose Your Subject..</option>
+                                          <option>Medical Physics(OBM552)</option>
+                                          <option>Introduction to Bioenergy and Biofuels(OBT551)</option>
+                                          <option>Database Management Systems(OIT551)</option>
+                                          <option>Cloud Computing(OIT552)</option>
+                                          <option>Basic of Biomedical Instrumentation(OMD551)</option>
+                                          <option>Renewable Energy Sources(ORO551)</option>
+                                         
+                                        </select>
+                        
+                                    </div>
+    
+                          </div>
+
+                           <!-- EIE DEPARTMENT -->
+
+                           <div class="eie" style="display:none;" id="eie">
+                                <div class="form-group">
+                                        <label for="eieelective">Choose Your Elective:</label>
+                                        <select class="form-control" id="eieelective">
+                                            <option selected disabled hidden>Choose Your Subject..</option>
+                                          <option>Air Pollution and Control Engineering(OCE551)</option>
+                                          <option>Database Management Systems(OIT551)</option>
+                                          
+                                          <option>Cloud Computing(OIT552)</option>
+                                          <option>Vibration and Noise Control(OME552)</option>
+                                          
+                                         
+                                        </select>
+                        
+                                    </div>
+    
+                          </div>
+                      
+                            <!-- AERO DEPARTMENT -->
+
+                            <div class="aero" style="display:none;" id="aero">
+                                    <div class="form-group">
+                                            <label for="aeroelective">Choose Your Elective:</label>
+                                            <select class="form-control" id="aeroelective">
+                                                <option selected disabled hidden>Choose Your Subject..</option>
+                                              <option>Sensors and Transducers(OAN551)</option>
+                                              <option>Automative Systems(OAT551)</option>
+                                              
+                                              <option>Air Pollution and Control Engineering(OCE551)</option>
+                                              <option>Lean Manufacturing(OIM552)</option>
+                                              <option>Database Management Systems(OIT551)</option>
+                                              <option>Cloud Computing(OIT552)</option>
+                                              <option>Industrial Safety Engineering(OME553)</option>
+                                              <option>Product Design and Development(OMF551)</option>
+                                              <option>Fibre Reinforced Plastics(OPT551)</option>
+                                              <option>Renewable Energy Sources(ORO551)</option>
+
+                                              
+                                             
+                                            </select>
+                            
+                                        </div>
+        
+                              </div>
+
+                              <!-- CIVIL DEPARTMENT -->
+
+                      <div class="civil" id="civil" style="display:none;">
+                            <div class="form-group">
+                                    <label for="civilelective">Choose Your Elective:</label>
+                                    <select class="form-control" id="civilelective">
+                                        <option selected disabled hidden>Choose Your Subject..</option>
+                                      <option>Environment and Agriculture(OAI551)</option>
+                                      <option>Energy Conservation and Management(OME551)</option>
+                                      <option>Renewable Energy Sources(ORO551)</option>
+                                     
+                                    </select>
+                    
+                                </div>
+
+                      </div>
+
+                      <!-- EEE DEPARTMENT -->
+
+                      <div class="eee" id="eee" style="display:none;">
+                            <div class="form-group">
+                                    <label for="eeeelective">Choose Your Elective:</label>
+                                    <select class="form-control" id="eeeelective">
+                                        <option selected disabled hidden>Choose Your Subject..</option>
+                                      <option>Sensors and Transducers(OAN551)</option>
+                                      <option>Air Pollution and Control Engineering(OCE551)</option>
+                                      <option>Database Management Systems(OIT551)</option>
+                                      <option>Cloud Computing(OIT552)</option>
+                                      <option>Basic of Biomedical Instrumentation(OMD551)</option>
+                                    </select>
+                    
+                                </div>
+
+                      </div>
+
+                      
+                            <!-- MECH DEPARTMENT -->
+
+                            <div class="mech" style="display:none;" id="mech">
+                                    <div class="form-group">
+                                            <label for="mechelective">Choose Your Elective:</label>
+                                            <select class="form-control" id="mechelective">
+                                                <option selected disabled hidden>Choose Your Subject..</option>
+                                              <option>Sensors and Transducers(OAN551)</option>
+                                              <option>Automative Systems(OAT551)</option>
+                                              
+                                              <option>Air Pollution and Control Engineering(OCE551)</option>
+                                              <option>Lean Manufacturing(OIM552)</option>
+                                              <option>Database Management Systems(OIT551)</option>
+                                              <option>Product Design and Development(OMF551)</option>
+                                             
+                                              <option>Renewable Energy Resources(ORO551)</option>
+
+                                              
+                                             
+                                            </select>
+                            
+                                        </div>
+        
+                              </div>
+
+                           
+                                
+                                  <div id="avail-box" class="avail-box">
+                                    <p id="avail"></p>
+                                  </div>
+                                
+                                
+                            
+                              
+                                    
+                                   
+                            
+
+                    
+                     
+          
+          
+              <button type="submit" class="btn btn-primary" id="elective-btn">Submit</button>
+            </form>
+
+
+    </div>
+
+</div>
+</body>
+</html>
