@@ -1,2 +1,2 @@
 # JavaScript-Course-Selection-WebApp
-A simple WebApp for students to select their Courses
+A Platform built in JavaScript & Google Firebase to choose Elective Courses in College
